@@ -34,6 +34,12 @@ public class Shoot : MonoBehaviour
             bulletPool.Enqueue(bullet);
             bullet.SetActive(true);
             bullet.transform.position = transform.position;
+
+            float parentYRotation = transform.parent.rotation.eulerAngles.y;
+            Debug.Log(parentYRotation);
+            Quaternion newRotation = Quaternion.Euler(90, parentYRotation, 0); // Y축만 변경
+            bullet.transform.rotation = newRotation;
+
             bullet.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed * Time.deltaTime;
         }
     }
